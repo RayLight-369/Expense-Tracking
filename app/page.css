@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(#8153ff, #e062ff);
+}
+
+div#container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 20px;
+  width: 700px;
+  min-height: 300px;
+  box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.35);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+div#container h1 {
+  color: #431bae;
+  text-align: center;
+  padding: 30px 0;
+  font-size: 1.7rem;
+  font-weight: 100;
+}
+
+ul {
+  list-style-type: none;
+}
+
+div#container div.box {
+  width: 100%;
+}
+
+div#container div.box div.inputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  top: 7px;
+}
+
+div.inputs > * {
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+div#container div.box div.inputs input[type="text"] {
+  width: 65%;
+}
+
+div#container div.box div.inputs input[type="number"] {
+  width: 15%;
+}
+
+div#container div.box div.inputs button {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #733fff -10%, #d93fff);
+  color: white;
+  cursor: pointer;
+  transition: 350ms ease-in-out;
+}
+
+div#container div.box div.inputs button:hover {
+  transform: rotate(180deg);
+  box-shadow: none;
+}
+
+div#container div.box div.inputs input {
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+}
+
+div#container div.box div.lists {
+  position: relative;
+  top: 40px;
+  padding: 20px 50px;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+div#container div.box div.lists ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+div#container div.box div.lists ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+div#container div.box div.lists ul li div.items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.9rem;
+  align-items: center;
+  color: #333;
+}
+
+div#container div.box div.lists ul li div.items p.price {
+  position: relative;
+  right: 10%;
+}
+
+div#container div.box div.lists ul li button {
+  outline: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background: linear-gradient(90deg, #ab92ee -10%, #d781ed);
+  border-radius: 50%;
+  font-size: .6em;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+div#container div.box div.lists ul li button:hover {
+  transform: rotate(180deg);
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 9px;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ab92ee -10%, #d781ed);
+  border-radius: 20px;
+  width: 9px;
+}

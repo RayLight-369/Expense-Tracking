@@ -1,95 +1,68 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import "./page.css"
+import { useEffect, useState } from 'react';
 
-export default function Home() {
+const Page = () => {
+  
+  let [items, setItems] = useState([])
+
+  let [newItem, setNewItem] = useState({ value: "", price: 0 });
+
+  const handleInputChange = (e) => {
+    setNewItem(prev => ({...prev, value: e.target.value}))
+  }
+
+  const handlePriceChange = (e) => {
+    setNewItem(prev => ({...prev, price: e.target.value}))
+  }
+
+  const handleSubmit = () => {
+    if (newItem.price != "" && newItem.price != undefined && newItem.value.trim().length) {
+      setItems(prev => [...prev, newItem]);
+      setNewItem({ value: "", price: 0 });
+      console.clear();
+      console.table(items)
+    }
+  }
+
+  const onPressEnter = (e) => {
+
+    if (e.key !== "Enter") return;
+
+    handleSubmit();
+  }
+
+  const handleDelete = (index) => {
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div id='container'>
+        <h1>Expense Tracker</h1>
+        <div className='box'>
+          <div className='inputs'>
+            <input type='text' placeholder='Enter Item' value={newItem.value} onChange={handleInputChange} onKeyDown={onPressEnter} />
+            <input type='number' placeholder='Enter PKR' value={newItem.price} onChange={handlePriceChange} onKeyDown={onPressEnter} />
+            <button onClick={handleSubmit}>+</button>
+          </div>
+          <div className='lists'>
+            <ul>
+              { items.map((item, index) => (
+                <li key={ index }>
+                  <div className="items">
+                    <p className='item'>{item.value}</p>
+                    <p className='price'>{ item.price } pkr</p>
+                  </div>
+                  <button onClick={() => handleDelete(index)}>X</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
   )
 }
+
+export default Page;
