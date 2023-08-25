@@ -44,7 +44,7 @@ const Page = () => {
         <div className='box'>
           <div className='inputs'>
             <input type='text' placeholder='Enter Item' value={newItem.value} onChange={handleInputChange} onKeyDown={onPressEnter} />
-            <input type='number' placeholder='Enter PKR' value={newItem.price} onChange={handlePriceChange} onKeyDown={onPressEnter} />
+            <input type='number' placeholder='Enter PKR' value={newItem.price} min={0} onChange={handlePriceChange} onKeyDown={onPressEnter} />
             <button onClick={handleSubmit}>+</button>
           </div>
           <div className='lists'>
